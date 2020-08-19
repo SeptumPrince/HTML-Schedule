@@ -1,9 +1,10 @@
+// DEPENDENCIES================================
 var currentDay = document.querySelector("#currentDay");
-//TODO: as soon as i open my page get document on ready
-$(document).ready(function () {
-  console.log("ready!");
-});
-// TO GET THE CURRENT DATE - find a way to display the day of the week
+
+//This function waits for the document to load
+$(document).ready(function () {});
+
+// This function gets current date
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, "0");
 var mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -11,7 +12,7 @@ var mm = String(today.getMonth() + 1).padStart(2, "0");
 var yyyy = today.getFullYear();
 today = mm + "/" + dd + "/" + yyyy;
 currentDay.append(today);
-// TO GET CURRENT TIME - DONE
+// This function gets the current time
 function myHour() {
   var d = new Date();
   var n = d.getHours();
@@ -46,29 +47,24 @@ var time = [
   24,
 ];
 
-$(".time-block").each(function (element) {
-  console.log(this);
+$(".time-block").each(function () {
   var timeRow = $(this);
   var now = myHour();
   var time = parseInt(timeRow.attr("id").split("-")[1]);
   console.log(time);
   if (now === time) {
     $(this).addClass("present");
-    //if time.key === myHour, then block is red
   }
   if (now > time) {
     $(this).addClass("past");
-    //if time.key < myHour, then block is grey
   }
   if (now < time) {
     $(this).addClass("future");
-    // if time.key> if time.key < myHour, then block is green
   }
 });
 
 $(".saveBtn").on("click", function () {
   //get nearby values.
-  console.log(this);
   var text = $(this).siblings(".description").val();
   var time = $(this).parent().attr("id");
   //set items in local storage.
